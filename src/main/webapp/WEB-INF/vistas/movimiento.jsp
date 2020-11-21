@@ -40,7 +40,8 @@
 			
 			<div class="form-group">
 				<label class="control-label" for="id_cuenta_des">Cuenta Destino</label>
-				<input class="form-control" type="text" id="id_cuenta_des" name="cuentaDestino" placeholder="Ingrese el nombre">
+				<input class="form-control" type="text" id="id_cuenta_des" name="cuentaDestino" placeholder="Ingrese el nombre"   
+				maxlength="15">
 			</div>
 			
 		    
@@ -69,6 +70,35 @@ $.getJSON("cargaCuenta", {}, function(data){
  <div class="col-md-12" align="center"> 
 
  </div>
-</div>    		
+</div>   
+
+<script type="text/javascript">    
+    $(document).ready(function(){     
+        $('#id_form').bootstrapValidator({      
+        	 fields:{
+        		 cuentaDestino:{
+        			 	validators:{
+        			 		notEmpty:{
+        			 			message:'El Campo de Cuenta Destino es obligatorio'	
+        			 		},
+        			 		
+        			 		digits : {
+						           message : 'El Campo de Cuenta Destino solo permite ingresar números'
+						    },
+						    
+						    regexp: {
+    	                        regexp: /^[0-9]{15}$/,
+    	                        message: 'El Campo de Cuenta Destino solo acepta 15 números enteros'
+    	                    },
+        			 	}
+        		 }
+        	 }
+        });   
+			
+    });    
+</script>
+		
+
+ 		
 </body>
 </html>
